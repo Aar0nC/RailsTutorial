@@ -1,0 +1,15 @@
+{
+  "name": "RailsTutorial",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ]
+}
