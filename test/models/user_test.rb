@@ -30,6 +30,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "accept valid email addresses" do
+    #TODO: use forgery gem to test against random valid email addresses
     valid_addresses = %w[aaron@example.com USER@foo.COM first.last@foo.jp
 alice+bob@bob.cp A_US-ER@foo.bar]
     valid_addresses.each do |valid_address|
@@ -45,5 +46,18 @@ alice+bob@bob.cp A_US-ER@foo.bar]
       @user.email = invalid_address
       assert_not @user.valid?, "#{invalid_addresses.inspect} is invalid"
     end
+  end
+
+  test "email addresses are unique" do
+    duplicate_user = @user.dup
+    @user.save
+    assert_not duplicate_user.valid?, "User #{@user.name} is not unique"
+  end
+
+  test "email addresses are unique and case insensitive" do
+    duplicate_user = @user.dup
+    duplicate_user.email = @user.email.upcase
+    @user.save
+    assert_not duplicate_user.valid?, "User #{@user.email} is not unique"
   end
 end
