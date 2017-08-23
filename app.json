@@ -1,6 +1,7 @@
 {
   "name": "RailsTutorial",
   "scripts": {
+    "postdeploy": "rails db:migrate"
   },
   "env": {
   },
