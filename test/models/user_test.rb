@@ -60,4 +60,12 @@ alice+bob@bob.cp A_US-ER@foo.bar]
     @user.save
     assert_not duplicate_user.valid?, "User #{@user.email} is not unique"
   end
+
+  test "email addresses are saved as lower-case" do
+    mixed_case_email = "Foo@ExAmPlE.CoM"
+    @user.email = mixed_case_email
+    @user.save
+    assert_equal mixed_case_email.downcase, @user.reload.email,
+                 "#{mixed_case_email} is not lowercase"
+  end
 end
