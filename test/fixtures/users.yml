@@ -1,0 +1,4 @@
+aaron:
+  name: Aaron Cotter
+  email: acotter@fake.com
+  password_digest: <%= User.digest('password') %>

@@ -12,8 +12,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:success] = "Welcome to the Sample App, #{@user.name}!"
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        flash[:success] = "Welcome to the Sample App, #{@user.name.partition(" ").first}!"
+        log_in @user
+        format.html { redirect_to @user }
       else
         format.html { render :new }
       end
