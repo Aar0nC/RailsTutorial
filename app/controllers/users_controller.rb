@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         flash[:success] = "Welcome to the Sample App, #{@user.name}!"
+        log_in @user
         format.html { redirect_to @user }
       else
         format.html { render :new }
