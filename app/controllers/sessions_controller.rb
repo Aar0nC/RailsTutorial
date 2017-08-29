@@ -15,6 +15,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    user = User.find(session[:user_id])
+    flash[:success] = "Bye for now, #{user.name.partition(" ").first}"
     log_out
     redirect_to root_path
   end

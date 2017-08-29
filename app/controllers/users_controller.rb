@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:success] = "Welcome to the Sample App, #{@user.name}!"
+        flash[:success] = "Welcome to the Sample App, #{@user.name.partition(" ").first}!"
         log_in @user
         format.html { redirect_to @user }
       else
